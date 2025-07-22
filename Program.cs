@@ -4,9 +4,9 @@ using System.Collections.Generic;
 class Program
 {
     static void Main(string[] args)
-
+    {
         Storage<Produkt> produktStorage = new Storage<Produkt>();
-	{
+	
 	LäsInFrånFil(produktStorage);
 	MataInProdukter(produktStorage);
 
