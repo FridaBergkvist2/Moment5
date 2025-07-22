@@ -4,16 +4,15 @@ using System.Collections.Generic;
 class Program
 {
     static void Main(string[] args)
-    {
+
         Storage<Produkt> produktStorage = new Storage<Produkt>();
 	{
-	Läsinfrånfil(produktStorage)
+	LäsInFrånFil(produktStorage);
 	MataInProdukter(produktStorage);
 
-	console.WriteLine("\n---Böcker jag lagt till---");
+	Console.WriteLine("\n---Böcker jag lagt till---");
 
-
-	SkrivUtAlla(produktStorage)
+	SkrivUtAlla(produktStorage);
 
         Console.WriteLine("Programmet avslutas.");
     }
@@ -45,30 +44,31 @@ class Program
             {
                 Console.WriteLine("Fel: Ange ett korrekt pris (t.ex. 199,50).");
             }
+  	}
+    }
+
     
    static void LäsInFrånFil(Storage<Produkt> storage)
     	{
-	if (File.Exists(textfil.txt))
+	    if (File.Exists("testfil.txt"))
 
             {
 		string[] rader = File.ReadAllLines("testfil.txt");
 		foreach (string rad in rader)
             	{
 			string[] delar = rad.Split(';');
-			if (delar.Length == 2 &&
-		    	    double.TryParse(delar[1], out double pris))
+			if (delar.Length == 2 && double.TryParse(delar[1], out double pris))
             		{ 
-		
-			    var produkt = new Produkt (namn, pris);
-			    storage.LäggTill(new Produkt(namn, pris));
-
+                   		string namn = delar[0];
+                    		var produkt = new Produkt(namn, pris);
+                    		storage.LäggTill(produkt);
             		}
-
-        	}
+            	}
             }
+ 	}
     static void SkrivUtAlla(Storage<Produkt> storage)
     	{
-	    console.WriteLine($"Antal: {storage.Antal}");
+	    Console.WriteLine($"Antal: {storage.Antal}");
 	    storage.SkrivUtAlla();
 
     	}
