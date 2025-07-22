@@ -1,0 +1,16 @@
+class bil{
+public string marke;
+public bil(string m){
+marke=m;}
+}
+
+Istället: 
+
+class bil
+    {
+	public string marke;
+	public bil(string m)
+	{	
+	    marke=m;
+ 	}
+    }
