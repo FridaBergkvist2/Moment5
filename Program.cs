@@ -10,7 +10,7 @@ class Program
 	LäsInFrånFil(produktStorage);
 	MataInProdukter(produktStorage);
 
-	Console.WriteLine("\n---Böcker jag lagt till---");
+	Console.WriteLine("\n---Här är alla rader som finns i filen:---");
 
 	SkrivUtAlla(produktStorage);
 
@@ -25,24 +25,21 @@ class Program
 
             try
             {
-                Console.Write("Ange produktnamn (eller 'stopp'): ");
+                Console.Write("Skriv in nåt (eller 'stopp'): ");
                 string namn = Console.ReadLine();
                 if (namn.ToLower() == "stopp")
                     break;
 
-                Console.Write("Ange pris: ");
-                double pris = Convert.ToDouble(Console.ReadLine());
-
-		var produkt = new Produkt (namn, pris);
-		storage.LäggTill(new Produkt(namn, pris));
+		var produkt = new Produkt (namn);
+		storage.LäggTill(new Produkt(namn));
 		
-		string rad = $"{produkt.Namn};{produkt.Pris}";
+		string rad = $"{produkt.Namn}";
  		File.AppendAllText("minData.txt", rad + Environment.NewLine);
 
             }
-            catch (FormatException)
+            catch (Exception)
             {
-                Console.WriteLine("Fel: Ange ett korrekt pris (t.ex. 199,50).");
+                Console.WriteLine("Du har skrivit fel.");
             }
   	}
     }
@@ -56,11 +53,10 @@ class Program
 		string[] rader = File.ReadAllLines("minData.txt");
 		foreach (string rad in rader)
             	{
-			string[] delar = rad.Split(';');
-			if (delar.Length == 2 && double.TryParse(delar[1], out double pris))
+			string namn = rad.Trim();
+            		if (!string.IsNullOrWhiteSpace(namn))
             		{ 
-                   		string namn = delar[0];
-                    		var produkt = new Produkt(namn, pris);
+                    		var produkt = new Produkt(namn);
                     		storage.LäggTill(produkt);
             		}
             	}
