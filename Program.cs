@@ -66,5 +66,10 @@ class Program
 
         	}
             }
+    static void SkrivUtAlla(Storage<Produkt> storage)
+    	{
+	    console.WriteLine($"Antal: {storage.Antal}");
+	    storage.SkrivUtAlla();
+
     	}
 }
