@@ -4,13 +4,13 @@ public bil(string m){
 marke=m;}
 }
 
-Istället: 
+// Istället bör man göra såhär: 
 
-class bil
+class Bil
     {
-	public string marke;
-	public bil(string m)
+	public string Marke;
+	public Bil(string m)
 	{	
-	    marke=m;
+	    Marke=m;
  	}
     }
