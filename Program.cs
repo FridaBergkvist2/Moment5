@@ -37,7 +37,7 @@ class Program
 		storage.LäggTill(new Produkt(namn, pris));
 		
 		string rad = $"{produkt.Namn};{produkt.Pris}";
- 		File.AppendAllText("testfil.txt", rad + Environment.NewLine);
+ 		File.AppendAllText("minData.txt", rad + Environment.NewLine);
 
             }
             catch (FormatException)
@@ -50,10 +50,10 @@ class Program
     
    static void LäsInFrånFil(Storage<Produkt> storage)
     	{
-	    if (File.Exists("testfil.txt"))
+	    if (File.Exists("minData.txt"))
 
             {
-		string[] rader = File.ReadAllLines("testfil.txt");
+		string[] rader = File.ReadAllLines("minData.txt");
 		foreach (string rad in rader)
             	{
 			string[] delar = rad.Split(';');
