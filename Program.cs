@@ -45,34 +45,26 @@ class Program
             {
                 Console.WriteLine("Fel: Ange ett korrekt pris (t.ex. 199,50).");
             }
-    static void LäsInFrånFil(Storage<Produkt> storage)
+    
+   static void LäsInFrånFil(Storage<Produkt> storage)
     	{
-	if (File.Exists(textfil.txt)
+	if (File.Exists(textfil.txt))
 
-        {
-
-            try
             {
-                Console.Write("Ange produktnamn (eller 'stopp'): ");
-                string namn = Console.ReadLine();
-                if (namn.ToLower() == "stopp")
-                    break;
-
-                Console.Write("Ange pris: ");
-                double pris = Convert.ToDouble(Console.ReadLine());
-
-		var produkt = new Produkt (namn, pris);
-		storage.LäggTill(new Produkt(namn, pris));
+		string[] rader = File.ReadAllLines("testfil.txt");
+		foreach (string rad in rader)
+            	{
+			string[] delar = rad.Split(';');
+			if (delar.Length == 2 &&
+		    	    double.TryParse(delar[1], out double pris))
+            		{ 
 		
-		string rad = $"{produkt.Namn};{produkt.Pris}";
- 		File.AppendAllText("testfil.txt", rad + Environment.NewLine);
+			    var produkt = new Produkt (namn, pris);
+			    storage.LäggTill(new Produkt(namn, pris));
 
+            		}
+
+        	}
             }
-            catch (FormatException)
-            {
-                Console.WriteLine("Fel: Ange ett korrekt pris (t.ex. 199,50).");
-            }
-        }
-        }
-    }
+    	}
 }
