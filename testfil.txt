@@ -1,1 +1,6 @@
-vvv
+vvvGullegull;12
+Nämen hejsan;55
+Hej bävern;22
+0;0
+Ville hade ett äpple;67
+Ville gillade glass;77
